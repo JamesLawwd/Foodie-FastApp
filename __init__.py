@@ -28,6 +28,11 @@ def create_tables():
     db.create_all()
 
 app.register_blueprint(flask_db_init)
+app.register_blueprint(auth_bp)
+app.register_blueprint(associate_bp)
+app.register_blueprint(order_bp)
+app.register_blueprint(restaurant_bp)
+app.register_blueprint(user_bp)
 
 
 # if __name__ == "__main__":
