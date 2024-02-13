@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Home from './Components/Home'
-import RegistrationForm from './Components/RegistrationForm'
+import RegistrationForm from './Components/RegistrationForm.js'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import UserAccount from './Components/UserAccount'

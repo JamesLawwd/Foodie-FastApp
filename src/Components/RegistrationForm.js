@@ -36,11 +36,12 @@ const RegistrationForm = () => {
   };
 
   const validatePassword = (password) => {
-    const passwordpattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordpattern = /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/;
     return passwordpattern.test(password);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("1")
 
     // validate email before submit
     if (!validateEmail(formdata.email)) {
@@ -150,6 +151,5 @@ const RegistrationForm = () => {
     </div>
   );
 };
-
-export default RegistrationForm;
-
+ 
+export default RegistrationForm
