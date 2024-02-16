@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Fast-FoodieApp  ![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue) [![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/) ![RESTful API](https://img.shields.io/badge/RESTful%20API-0078D4?style=for-the-badge&logo=api&logoColor=white) ![Bootstrap Logo (Alternative)](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white) ![Axios Logo (Alternative)](https://img.shields.io/badge/Axios-0078D4?style=for-the-badge&logo=axios&logoColor=white)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+ 1. Introduction
+ 2. Features
+ 3. Getting Started
+ 4. Prerequisites
+ 5. Installation
+ 6. Usage
+ 7. Configuration
+ 8. Contributing
+ 9. License 
 
-In the project directory, you can run:
+## Introduction
+   Welcome to the Food Delivery App README! This document provides an overview of our food delivery application, its features, and how to get started. Whether you're a developer looking to contribute or a user interested in ordering delicious food, this guide has you covered.
 
-### `npm start`
+   Our Food Delivery App is designed to make ordering food from your favorite local restaurants convenient and efficient. With a user-friendly interface and a wide selection of cuisines, we aim to enhance your dining experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## FEATURES
+.  User Registration and Authentication: Users can create accounts, log in securely, and manage their     profiles.
+.  Restaurant Listings: Browse a variety of local restaurants and their menus.
+.  Menu Exploration: Explore restaurant menus with descriptions and prices.
+.  Order Placement: Place orders, customize items, and add them to your cart.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## GETTING STARTED
+    Prerequisites
 
-### `npm test`
+    Before you begin, ensure you have met the following requirements:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+.  Python (version 3.7 or higher)
+.  Virtualenv (optional but recommended)
 
-### `npm run build`
+## INSTALLATION
+Follow these steps to install and run the Fast-FoodieApp:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+   git clone https://github.com/iankiplangat77/Foodie-FastApp
+   cd foodDeliveryapp
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Create a virtual environment (recommended):
+    virtualenv env
+    source env/bin/activate 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install dependencies:
+   pip freeze > requirements.txt
 
-### `npm run eject`
+4. Run the application:
+    python app.py
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Now, you should have the Food Delivery App up and running locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## USAGE
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+.  Visit the application in your web browser at http://localhost:5000.
+.  Sign up or log in to start ordering food.
+.  Explore restaurant listings, menus, and place orders.
+.  Use the admin dashboard to manage restaurant details.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Configuration
+We welcome contributions from the community. To contribute to the Fast-FoodieApp, follow these steps:
 
-## Learn More
+1.Fork the repository.
+2.Create a new branch for your feature or bug fix.
+3.Make your changes and commit them.
+4.Push your changes to your fork.
+5.Create a pull request against the main repository.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
+The Fast-FoodieApp is open-source software licensed under the MIT License.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Author
+Ian Kiplagat & James Kinyanjui

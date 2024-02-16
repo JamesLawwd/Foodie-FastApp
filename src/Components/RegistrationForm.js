@@ -1,155 +1,137 @@
-import React, { useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const RegistrationForm = () => {
-  
-  const navigate = useNavigate();
-  
 
-  
-  const [formdata, setformData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setformData({
-      ...formdata,
-      [name]: value,
+    const navigate = useNavigate();
+    const [formdata, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
     });
-  };
+    const [passwordError, setPasswordError] = useState('');
+    const [registrationStatus, setRegistrationStatus] = useState(null);
 
-  const [passwordError, setpasswordError] = useState('');
-  const [regestration, setRegestration] = useState(null)
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formdata,
+            [name]: value,
+        });
+    };
+    const validateEmail = (email) => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    };
 
-  const handleNavigation = () => {
-    navigate('/login');
-  };
+    const validatePassword = (password) => {
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        return passwordPattern.test(password);
+    };
 
-  const validateEmail = (email) => {
-    const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailpattern.test(email);
-  };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        
 
-  const validatePassword = (password) => {
-    const passwordpattern = /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/;
-    return passwordpattern.test(password);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log("1")
+        // Validate email
+        if (!validateEmail(formdata.email)) {
+            alert('Please enter a valid email');
+            return;
+        }
 
-    // validate email before submit
-    if (!validateEmail(formdata.email)) {
-      alert('Please enter a valid email');
-      return;
-    }
+        // Validate password
+        if (!validatePassword(formdata.password)) {
+            setPasswordError(
+                'Password must be 8 characters long and contain at least one letter and one number'
+            );
+            return;
+        } else {
+            setPasswordError('');
+        }
 
-    if (!validatePassword(formdata.password)) {
-      setpasswordError(
-        'Password must be 8 characters long and contain at least one letter and one number'
-      );
-    } else {
-      setpasswordError(''); // clear previous error
-    }
+        try {
+            const response = await fetch('https://flask-apidelivery.onrender.com/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formdata),
+            });
 
-    console.log('Password is valid');
-
-    try{
-      const response =await fetch('https://flask-apidelivery.onrender.com/auth/register', {
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-        },
-        body:JSON.stringify(formdata),
-
-      });
-
-      if(response.status === 200){
-        setRegestration('success')
-        // reg was success redirect to login
-        navigate('/login')
-      
-      }
-
-      else{
-        const data =await response.json()
-        console.log(data.message);
-        setRegestration('Failure')
-      }
-    }catch(error){
-      console.error('Error during registration:', error)
-    }
-  };
-
-
-  return (
-    <div>
-      <section className="picture">
-        <form className="registration-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="exampleInputUsername" >Username</label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputUsername"
-              aria-describedby="emailHelp"
-              placeholder="Enter username"
-              name="username"
-              value={formdata.username}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1" >Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              name="email"
-              value={formdata.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1" >Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              name="password"
-              value={formdata.password}
-              onChange={handleChange}
-            />
-                {passwordError && (
-              <p className="error-message">{passwordError}</p>
-            )}
-           
-          </div>
-
-          <button type="submit" className="btns">
-            Submit
-          </button>
-          {regestration === 'success' && (
-            <p className='success-message'>Successful regestration!Please proceed to Login</p>
-          )}
-         
-          <div >
-                <small className="text-muted">
-                    <p className='white-text'> Alredy have an account? <a class="ml-2" href='/login'> Login</a> </p> 
-                </small>
-                </div>
-        </form>
-      </section>
-    </div>
-  );
+            if (response.ok) {
+                setRegistrationStatus('success');
+                navigate('/login');
+            } else {
+                const data = await response.json();
+                console.log(data.message);
+                setRegistrationStatus('failure');
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+        }
+    };
+     return (
+        <div>
+            <section className="picture">
+                <form className="registration-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputUsername">Username</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputUsername"
+                            placeholder="Enter username"
+                            name="username"
+                            value={formdata.username}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="Enter email"
+                            name="email"
+                            value={formdata.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            placeholder="Password"
+                            name="password"
+                            value={formdata.password}
+                            onChange={handleChange}
+                            required 
+                        />
+                        {passwordError && <p className="error-message">{passwordError}</p>}
+                    </div>
+                    <button type="submit" className="btns">
+                        Submit
+                    </button>
+                    {registrationStatus === 'success' && (
+                        <p className="success-message">Successful registration! Please proceed to login.</p>
+                    )}
+                    {registrationStatus === 'failure' && (
+                        <p className="error-message">Registration failed. Please try again.</p>
+                    )}
+                    <div>
+                        <small className="text-muted">
+                            Already have an account? <a href="/login">Login</a>
+                        </small>
+                    </div>
+                </form>
+            </section>
+        </div>
+    );
 };
- 
-export default RegistrationForm
+
+export default RegistrationForm;
