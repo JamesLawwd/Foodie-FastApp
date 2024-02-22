@@ -6,9 +6,17 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from datetime import timedelta
+from menu_routes import menu_bp
+from association_routes import associate_bp
+from auth import auth_bp
+from order_routes import order_bp
+from restaurant_routes import restaurant_bp
+from user_account import user_bp
+
+
 
 app = Flask(__name__)
-CORS(app, origins="http://localhost:5173")
+CORS(app)
 
 # my configs
 app.config['SECRET_KEY'] = '266ceaf6c1874e0484d761f1360708eb'
@@ -28,11 +36,16 @@ def create_tables():
     db.create_all()
 
 app.register_blueprint(flask_db_init)
-app.register_blueprint(auth_bp)
+app.register_blueprint(menu_bp)
 app.register_blueprint(associate_bp)
+app.register_blueprint(auth_bp)
 app.register_blueprint(order_bp)
 app.register_blueprint(restaurant_bp)
 app.register_blueprint(user_bp)
+
+@app.route('/')
+def hello_world():
+    return 'Ian from Flask'
 
 
 # if __name__ == "__main__":

@@ -23,13 +23,13 @@ def register_user():
     # check input fields are not empty
     if 'username' not in data or 'email' not in  data or 'password' not in data:
         return jsonify({"message":"input fields requred"}), 400
-    
+
     # check if username exists
     user = User.query.filter_by(username=username).first()
 
     if user:
         return jsonify({"msg":"User alredy exists"}), 400
-    
+
     # hash password
     hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
@@ -97,7 +97,7 @@ def login():
 def refresh_access():
     identity = get_jwt_identity()
 
-    
+
     # create a new access token
     new_access_token = create_access_token(identity=identity)
 
@@ -106,8 +106,6 @@ def refresh_access():
 # log out scenario
 @auth_bp.route('/logout', methods=['POST'])
 @jwt_required(verify_type=False)
-@cross_origin(origin='http://localhost:5173', supports_credentials=True)
-
 def logout():
     jtw = get_jwt()
     jti = jtw['jti']
@@ -123,6 +121,6 @@ def logout():
 
 
 
-            
+
 
 

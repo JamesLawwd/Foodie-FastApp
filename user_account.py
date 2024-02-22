@@ -33,7 +33,6 @@ def get_all_users():
 # user to see their profile only
 @user_bp.route('/account', methods=['GET'])
 @jwt_required()
-@cross_origin(origin='http://localhost:5173', supports_credentials=True)
 def user_account():
     try:
         current_user_id = get_jwt_identity()
@@ -74,7 +73,7 @@ def get_order():
         else:
             return jsonify({"message":'user not found', "error":"order not found"}), 404
 
-    
+
 @user_bp.route('/edit', methods=['PATCH'])
 @jwt_required()
 def edit_profile():
@@ -84,7 +83,7 @@ def edit_profile():
     # check if user exists
     if not user:
         return jsonify({"message":"User not found"})
-    
+
     data = request.get_json()
 
     # see if username or email exists

@@ -48,10 +48,10 @@ def get_all_menus():
 
 def get_menus_for_restaurant(restaurant_id):
     menus = Menu.query.filter_by(restaurant_id=restaurant_id).all()
-    
+
     if not menus:
         return jsonify({"message": "No menus found for this restaurant"}), 404
-    
+
     serialized_menus = [{
         "id": menu.id,
         "name": menu.name,
@@ -60,7 +60,7 @@ def get_menus_for_restaurant(restaurant_id):
         "restaurant_id": menu.restaurant_id,
         "image_url": menu.image_url
     } for menu in menus]
-    
+
     return jsonify(serialized_menus), 200
 
 
